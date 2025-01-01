@@ -1,9 +1,28 @@
 // Mobile Menu Toggle
 const menuBtn = document.querySelector('.menu-btn');
-const navLinks = document.querySelector('.nav-links');
+const navCenter = document.querySelector('.nav-content-center');
 
-menuBtn.addEventListener('click', () => {
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navCenter.classList.toggle('active');
+    const isOpen = navCenter.classList.contains('active');
+    menuBtn.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!navCenter.contains(e.target) && !menuBtn.contains(e.target) && navCenter.classList.contains('active')) {
+        navCenter.classList.remove('active');
+        menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    }
+});
+
+// Close menu when clicking on a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navCenter.classList.remove('active');
+        menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    });
 });
 
 // Smooth scrolling for navigation links

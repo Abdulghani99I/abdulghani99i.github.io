@@ -794,14 +794,54 @@ nav {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .nav-content-center {
-        display: none;
+    .nav-content {
+        padding: 0.8rem 1rem;
     }
-    
+
+    .nav-content-center {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 1rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+        display: block !important;
+    }
+
+    .nav-content-center.active {
+        transform: translateY(0);
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        display: flex !important;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 0.5rem;
+    }
+
     .menu-btn {
         display: block;
+        cursor: pointer;
+        font-size: 1.5rem;
     }
-    
+
+    .menu-btn:hover {
+        color: #666;
+    }
+
     .about-content {
         grid-template-columns: 1fr;
         gap: 2rem;
